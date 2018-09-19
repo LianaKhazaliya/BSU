@@ -3,7 +3,7 @@
 
 from Insertion_Sort import insertion_sort
 from Quick_Sort import quick_sort
-from Time_Check import time_sort
+from Expected_bound import time_sort
 
 from random import sample, randint
 
