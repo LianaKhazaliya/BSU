@@ -9,23 +9,24 @@ def quick_sort(lst, start=0, end=None):
 
 	if len(lst) > 1 and start < end:
 
-		p = randint(start, end)
+		pivot = randint(start, end)
 
-		if p!= end:
-			lst[p], lst[end] = lst[end], lst[p]
+		if pivot != end:
+			lst[pivot], lst[end] = lst[end], lst[pivot]
 		pivot = lst[end]
 
-		i, j, l = start, start, start
-		while i <= end-1:
-			if lst[i] <= pivot:
-				lst[i], lst[j] = lst[j], lst[i]
-				j += 1
-			i += 1
+		cur, gr, leq = start, start, start
+		while cur <= end-1:
+			if lst[cur] <= pivot:
+				lst[cur], lst[gr] = lst[gr], lst[cur]
+				gr += 1
+			cur += 1
 
-		lst[j], lst[end] = lst[end], lst[j]
+		lst[gr], lst[end] = lst[end], lst[gr]
 
-		quick_sort(lst, start, j-1)
-		quick_sort(lst, j+1, end)
+		quick_sort(lst, leq, gr-1)
+		quick_sort(lst, gr+1, end)
+
 
 	return lst
 
@@ -33,7 +34,7 @@ def quick_sort(lst, start=0, end=None):
 def test():
 	def case(lst):
 		result = quick_sort(lst)
-		print 'Ok'
+		print result, 'Ok'
 
 	case([])
 	case([1])
@@ -44,7 +45,7 @@ def test():
 	case(sample(xrange(1000), 15))
 	case(sample(xrange(1000), 41))
 	case(sample(xrange(1000), 100))
-	case(sample(xrange(1000000000), 100000))
+	#case(sample(xrange(1000000000), 100000))
 
 
 if __name__ == '__main__':
